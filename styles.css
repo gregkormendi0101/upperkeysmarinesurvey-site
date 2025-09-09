@@ -39,7 +39,7 @@ a:not(.btn):hover,a:not(.btn):focus{color:var(--accent-600)}
 .site-header{
   position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.9);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line)
 }
-.header-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
 .brand{display:flex;gap:10px;align-items:center}
 .brand-text{font-weight:700;color:var(--text)}
 .main-nav{display:flex;gap:10px;align-items:center}
@@ -58,6 +58,10 @@ a:not(.btn):hover,a:not(.btn):focus{color:var(--accent-600)}
 .btn-outline{border-color:var(--accent);color:var(--accent);background:transparent}
 .btn-outline:hover{background:var(--accent-50)}
 .btn-lg{--pad-y:14px;--pad-x:18px;font-size:1rem}
+
+/* Header-specific button tweaks for better fit */
+.site-header .main-nav .btn{--pad-y:8px;--pad-x:12px;min-height:44px;font-size:.95rem}
+.site-header .main-nav .btn:hover,.site-header .main-nav .btn:focus{transform:none}
 
 /* Offer stripe */
 .stripe{background:linear-gradient(90deg, var(--accent) 0%, var(--accent-600) 100%);color:#fff}
