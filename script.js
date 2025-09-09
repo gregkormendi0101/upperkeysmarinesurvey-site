@@ -7,16 +7,24 @@
 */
 (function(){
   window.dataLayer = window.dataLayer || [];
+  function gaEvent(name, params){
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', name, params || {});
+    }
+  }
 
   // CTA click tracking
   document.addEventListener('click', function(e){
     const el = e.target.closest('[data-cta]');
     if(!el) return;
-    window.dataLayer.push({
-      event: 'cta_click',
-      cta: el.getAttribute('data-cta'),
-      text: (el.textContent || '').trim()
-    });
+    const cta = el.getAttribute('data-cta');
+    const text = (el.textContent || '').trim();
+    const href = el.getAttribute('href') || '';
+    window.dataLayer.push({ event: 'cta_click', cta, text });
+    if (href.startsWith('tel:')) {
+      gaEvent('phone_click', { cta, link_text: text });
+    }
+    gaEvent('cta_click', { cta, link_text: text });
   });
 
   // Toast helper
@@ -59,7 +67,17 @@
         });
         if(res.ok){
           toast('Thanks — your request was sent. We’ll reply shortly.', true);
-          window.dataLayer.push({ event: 'form_submit_success' });
+          // Push richer event details (non-PII) for analytics
+          window.dataLayer.push({
+            event: 'form_submit_success',
+            form_id: form.id || 'quote-form',
+            service: fd.get('service') || '',
+          });
+          gaEvent('generate_lead', {
+            method: 'formsubmit',
+            form_id: form.id || 'quote-form',
+            service: fd.get('service') || ''
+          });
           form.reset();
         }else{
           toast('There was an issue sending your request. Please call or email.', false);
@@ -72,4 +90,3 @@
     });
   }
 })();
-
