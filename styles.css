@@ -111,7 +111,6 @@ a:not(.btn):hover,a:not(.btn):focus{color:var(--accent-600)}
 
 /* Mobile tweaks */
 @media (max-width:699px){
-  body{padding-bottom:64px}
   .map-wrap iframe{height:240px}
 }
 
@@ -149,9 +148,7 @@ a:not(.btn):hover,a:not(.btn):focus{color:var(--accent-600)}
 .toast.err .bubble{border-color:#fee2e2;background:#fef2f2}
 
 /* Callbar */
-.callbar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#ffffffe6;border-top:1px solid var(--line);backdrop-filter:saturate(180%) blur(8px)}
-.callbar-btn{display:block;text-align:center;padding:14px 18px;font-weight:700;background:var(--accent);color:#fff}
-.callbar-btn:hover,.callbar-btn:focus{background:var(--accent-600)}
+/* callbar removed */
 
 /* Footer */
 .site-footer{background:#0b1325;color:#dbeafe;margin-top:48px}
